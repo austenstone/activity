@@ -30,7 +30,7 @@ export const run = async (): Promise<void> => {
   const formattedSince = since.toISOString().slice(0, 10);
 
   type userActivity = {
-    commits?: any,
+    commits?: unknown,
     _user: typeof usersResponse[0];
   };
   const users = usersResponse.reduce((acc, user) => {
@@ -46,7 +46,7 @@ export const run = async (): Promise<void> => {
     });
     activity.commits = commits;
     
-    const issues = await octokit.rest.search.issuesAndPullRequests({
+    await octokit.rest.search.issuesAndPullRequests({
       q: `author:${login} org:${input.organization} created:<${formattedSince}`,
     });
     
