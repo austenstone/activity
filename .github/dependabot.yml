@@ -24,6 +24,10 @@ updates:
     # typescript v6+ deprecates moduleResolution=node10 and requires tsconfig migration
     # to node16/bundler or ignoreDeprecations: "6.0". Ignore majors until a planned
     # tsconfig modernization.
+    # @types/node majors should track the runner's Node LTS (currently 22). Ignore
+    # majors that outrun the runtime.
+    # @vercel/ncc majors have historically changed bundle output / required Node bumps;
+    # gate behind a planned bundler refresh.
     ignore:
       - dependency-name: "@actions/core"
         update-types: ["version-update:semver-major"]
@@ -40,4 +44,8 @@ updates:
       - dependency-name: "@typescript-eslint/eslint-plugin"
         update-types: ["version-update:semver-major"]
       - dependency-name: "typescript-eslint"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@vercel/ncc"
         update-types: ["version-update:semver-major"]
