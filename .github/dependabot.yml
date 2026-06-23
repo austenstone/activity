@@ -21,10 +21,15 @@ updates:
     # eslint v9+ plugin majors (eslint-plugin-jest 29, eslint-plugin-github 6, @eslint/js 10,
     # @typescript-eslint/* 8+) require eslint v9 peer dep; this repo is on eslint v8.
     # Ignore plugin majors until an eslint v8→v9 coordinated upgrade.
+    # typescript v6+ deprecates moduleResolution=node10 and requires tsconfig migration
+    # to node16/bundler or ignoreDeprecations: "6.0". Ignore majors until a planned
+    # tsconfig modernization.
     ignore:
       - dependency-name: "@actions/core"
         update-types: ["version-update:semver-major"]
       - dependency-name: "@actions/github"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "typescript"
         update-types: ["version-update:semver-major"]
       - dependency-name: "eslint-plugin-jest"
         update-types: ["version-update:semver-major"]
